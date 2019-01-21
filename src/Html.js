@@ -7,6 +7,7 @@ const Html = (props) => {
     x,
     y,
     sourceById,
+    rawHtml
   } = props
   return (
     <Consumer>
@@ -14,7 +15,7 @@ const Html = (props) => {
         const specialElementHandlers = {
           [`#${sourceById}`]: () => true
         }
-        const html = document.getElementById(sourceById)
+        const html = rawHtml ? rawHtml : document.getElementById(sourceById)
         context.doc.fromHTML(html, x, y, {
           'elementHandlers': specialElementHandlers
         })
